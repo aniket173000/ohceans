@@ -5,7 +5,10 @@ const {
     getUser,
     deleteUser,
     updateUser,
-    followUser
+    followUser,
+    getNearbyFriends,
+    getFollowersList,
+    getFollowingList
 } = require("../controllers/userController")
 
 const router = express.Router()
@@ -14,18 +17,28 @@ const router = express.Router()
 // get all users
 router.get("/", getUsers);
 
-// get a single workout
+// get a single user
 router.get("/:id", getUser );
 
-// post a new workout
+// add a new user
 router.post("/", createUser);
 
-// delete a workout
+// get friends nearby
+router.post('/:id/nearby', getNearbyFriends)
+
+// delete a user
 router.delete('/:id', deleteUser)
 
-// update a workout
+// update user info
 router.patch('/:id', updateUser)
 
-router.post('/follow/:id', followUser)
+// follow another user
+router.post('/:id/follow', followUser)
+
+// get my followers list
+router.get('/:id/followers', getFollowersList)
+
+// get my followering list
+router.get('/:id/following', getFollowingList)
 
 module.exports = router

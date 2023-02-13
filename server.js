@@ -7,6 +7,9 @@ const userRoutes = require('./routes/userRoutes')
 const app = express();
 dotenv.config();
 
+const bodyParser = require("body-parser")
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //express middleware
 app.use(express.json());
@@ -25,7 +28,6 @@ const port = process.env.PORT
 mongoose.set('strictQuery', true);
 
 
-console.log(process.env.MONGO_URI)
 mongoose.connect(process.env.MONGO_URI)
     .then( () => {
         // listening for requests
